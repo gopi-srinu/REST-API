@@ -25,16 +25,16 @@ app.get('/', (req, res) => {
 })
 
 app.get('/tasks', (req, res) => {
-  model.find().then((tasksData) => {
-    res.send(tasksData);
+  model.find().then((tasks) => {
+    res.send(tasks);
   }).catch((error) => {
     res.send(error);
   })
 })
 
 app.get('/tasks/:name', (req, res) => {
-  const { taskName } = req.params.name;
-  model.findOne({ name: taskName }).then((selectedTask) => {
+  const { taskNameRegex } = req.params.name;
+  model.findOne({ name: taskNameRegex }).then((selectedTask) => {
     res.send(selectedTask);
   }).catch((error) => {
     res.send(error);
@@ -54,7 +54,7 @@ app.post('/tasks/newTask', (req, res) => {
 app.delete('/tasks/:name', (req, res) => {
   const { taskTobeDeleted } = req.params.name;
   console.log("task", taskTobeDeleted);
-  model.findOneAndDelete({ taskTobeDeleted }).then((taskDeleted) => {
+  model.findOneAndDelete({ name: taskTobeDeleted }).then((taskDeleted) => {
     console.log("taskDeleted", taskDeleted);
     if (taskDeleted) {
       res.status(200).send({message: 'Task Deleted Successfully!'})
@@ -73,7 +73,7 @@ app.put('/tasks/:name', (req, res) => {
   const newTaskName = req.params.name;
   model.findOneAndUpdate({taskName: newTaskName}, {$set: taskUpdatedinformation}, {new: true}).then((updatedTaskinformation) => {
     console.log(updatedTaskinformation);
-    res.status(200).send({message: 'Task updated Successfully'});
+    res.status(200).send('Task updated Successfully')
   }, (error) => {
     console.log(error);
     res.status(404).send('Task not updated', error)
