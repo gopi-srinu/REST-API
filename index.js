@@ -25,25 +25,25 @@ app.get('/', (req, res) => {
 })
 
 app.get('/tasks', (req, res) => {
-  model.find().then((drivers) => {
-    res.send(drivers);
+  model.find().then((tasksData) => {
+    res.send(tasksData);
   }).catch((error) => {
     res.send(error);
   })
 })
 
 app.get('/tasks/:name', (req, res) => {
-  const { taskNameRegex } = req.params.name;
-  model.findOne({ name: taskNameRegex }).then((searchedDriver) => {
-    res.send(searchedDriver);
+  const { taskName } = req.params.name;
+  model.findOne({ name: taskName }).then((selectedTask) => {
+    res.send(selectedTask);
   }).catch((error) => {
     res.send(error);
   })
 })
 
 app.post('/tasks/newTask', (req, res) => {
-  const newDriver = new model(req.body);
-  newDriver.save().then((savedResponse) => {
+  const newTask = new model(req.body);
+  newTask.save().then((savedResponse) => {
     res.send({ message: 'Data uploaded successfully' });
     console.log(savedResponse);
   }).catch((error) => {
@@ -73,7 +73,7 @@ app.put('/tasks/:name', (req, res) => {
   const newTaskName = req.params.name;
   model.findOneAndUpdate({taskName: newTaskName}, {$set: taskUpdatedinformation}, {new: true}).then((updatedTaskinformation) => {
     console.log(updatedTaskinformation);
-    res.status(200).send('Task updated Successfully')
+    res.status(200).send({message: 'Task updated Successfully'});
   }, (error) => {
     console.log(error);
     res.status(404).send('Task not updated', error)
