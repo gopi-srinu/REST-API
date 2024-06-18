@@ -12,7 +12,7 @@ app.use('/', (req, res, next) => {
   next();
 })
 
-const dbURL = "mongodb+srv://myself:1234@cluster0.jbwr5bs.mongodb.net/";
+const dbURL = "";
 mongoose.connect(dbURL).then((connection) => {
   app.listen(3000, 'localhost', () => { console.log('Server up and running!'); })
   console.log("Connection Successfull");
