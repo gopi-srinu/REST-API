@@ -1,41 +1,53 @@
-REST API for Task Management
 
-Key Points
+# REST API
 
-Overview
-Purpose: This project is a REST API designed for managing tasks, allowing users to perform CRUD (Create, Read, Update, Delete) operations on task data.
-Technologies: Built using Node.js, Express, and MongoDB.
+This application is intended to conduct CRUD (Create, Read, Update, and Delete) operations on user-provided task data and information. Users can provide task information through Postman, which serves as a frontend.
 
-Features
-CRUD Operations:
-Create: Add new tasks.
-Read: Retrieve all tasks or a specific task by name.
-Update: Modify existing tasks.
-Delete: Remove tasks by name.
-Middleware: Utilizes Express middleware for logging requests and handling JSON payloads.
-Error Handling: Includes basic error handling for database operations and invalid requests.
+## Features
 
-Endpoints
+- Create - Add new Task.
+- Read - Retrieve all tasks or task by name.
+- Update - Modify existing task information.
+- Delete - Delete a task.
 
-GET /tasks: Retrieve a list of all tasks.
+## Installation
 
-GET /tasks/taskName : Retrieve a specific task by name.
+Clone the repository
 
-POST /tasks/newTask : Create a new task with provided details.
+```bash
+  git clone https://github.com/gopi-srinu/REST-API.git
+```
+Navigate to the project directory
+```bash
+  cd REST-API
+```
+Run the Application
+```bash
+  nodemon index.js
+```
 
-DELETE /tasks/taskName : Delete a task by name.
+## Usage
 
-PUT /tasks/taskName : Update details of a specific task.
+This application allows users to add a task, view all task information or a specified task information, delete a task, and change a specific task information.
 
-Data Model
-Task Schema: Defines the structure of a task document with fields for name, description, and status.
+## Adding a task
 
-Database
-MongoDB: Uses MongoDB for data storage, providing a scalable and flexible NoSQL database solution.
+- We can add a task by sending a POST request and providing the relevant body information.
 
-Installation & Setup
+## Reading a task
 
-1. Clone Repository: Obtain the source code from the repository.
-2. Install Dependencies: Use npm to install required packages.
-3. Configure Environment: Set up a .env file with your MongoDB connection string.
-4. Start Server: Run the server locally using Node.js.
+- We can acquire information about all tasks by using the GET request, or we can read information about a specific task by using the GET request with the name of the task as a parameter.
+
+## Deleting a task
+
+- Using the DELETE request, we can remove a task from the database.
+
+## Editing a task 
+
+- Using the PUT request, we can change a specific task's details by including new body information.
+
+## Tech Stack
+
+**Server:** Node.JS, Express.JS
+
+**Database:** MongoDB 
